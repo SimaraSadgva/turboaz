@@ -829,10 +829,63 @@ let data = [
   },
 ];
 
-const cardsContainer = document.getElementById("cards-container");
+const cardsimport = document.getElementById("cards-cars");
+const modelSelect = document.getElementById("modelSelect");
+const markaSel = document.getElementById("markaSel");
+const seherSelect = document.getElementById("seherSelect");
+const banSelect = document.getElementById("banSelect");
+const moneySelect = document.getElementById("moneySelect");
+
 let cardsCars = "";
 data.map((car) => {
   cardsCars += `
+        <div class=" max-w-[1800px] m-auto">
+        <div class="cars text-center w-[235px] rounded-[8px]  m-[10px]">
+        <img class="w-full h-[200px] rounded-[4px] object-cover" src="${car.images[0]}" alt="${car.brand} ${car.model}">
+        <p class="carprice"> ${car.price} ${car.currency}</p>
+        <h2>${car.brand} ${car.model}</h2>
+        <p>${car.year} , ${car.engine}L, ${car.odometer}${car.odometerUnit}</p>
+        <span>${car.city}, bu gün 10:44</span>
+        </div>
+        </div>
+      `;
+
+  cardsimport.innerHTML = cardsCars;
+});
+
+const markaSet = new Set();
+const modelSet = new Set();
+const seherSet = new Set();
+const banSet = new Set();
+const moneySet = new Set();
+
+for (let j = 0; j < data.length; j++) {
+  markaSet.add(data[j].brand);
+  modelSet.add(data[j].model);
+  seherSet.add(data[j].city);
+  banSet.add(data[j].banType);
+  moneySet.add(data[j].currency);
+}
+
+const marka = Array.from(markaSet);
+const model = Array.from(modelSet);
+const seher = Array.from(seherSet);
+const ban = Array.from(banSet);
+const money = Array.from(moneySet);
+
+function markaCixart() {
+  markaSel.innerHTML = "";
+
+  for (let j = 1; j < marka.length; j++) {
+    markaSel.innerHTML += `<option onclick="showmarka()">${marka[j]}</option>`;
+  }
+}
+
+function showmarka() {
+  let cardsCars = "";
+  data.map((car) => {
+    if (car.brand.includes()) {
+      cardsCars += `
         <div class="cars">
         <img src="${car.images[0]}" alt="${car.brand} ${car.model}">
         <p class="carprice"> ${car.price} ${car.currency}</p>
@@ -842,5 +895,46 @@ data.map((car) => {
         </div>
       `;
 
-  cardsContainer.innerHTML = cardsCars;
-});
+      cardsContainer.innerHTML = cardsCars;
+    }
+  });
+}
+showmarka("");
+
+function modelCixart() {
+  modelSelect.innerHTML = "";
+  for (let j = 1; j < model.length; j++) {
+    modelSelect.innerHTML += `<option>${model[j]}</option>`;
+  }
+}
+
+function cityCixart() {
+  seherSelect.innerHTML = "";
+  for (let j = 1; j < seher.length; j++) {
+    seherSelect.innerHTML += `<option>${seher[j]}</option>`;
+  }
+}
+
+function banCixart() {
+  banSelect.innerHTML = "";
+
+  for (let j = 1; j < ban.length; j++) {
+    banSelect.innerHTML += `<option>${ban[j]}</option>`;
+  }
+}
+
+function moneyCixart() {
+  moneySelect.innerHTML = "";
+
+  for (let j = 0; j < money.length; j++) {
+    moneySelect.innerHTML += `<option>${money[j]}</option>`;
+  }
+}
+
+function scrollCars(e) {
+  e.preventDefault()
+  window.scrollTo({
+    top: 400,
+    behavior: "smooth",
+  });
+}

@@ -16,40 +16,18 @@
       tailwind.config = {
         theme: {
           screens: {
-            mobil: "256px",
+            mobil: "480px",
             sm: "640px",
-            // => @media (min-width: 640px) { ... }
-
             md: "768px",
-            // => @media (min-width: 768px) { ... }
-
             lg: "1024px",
-            // => @media (min-width: 1024px) { ... }
-
             xl: "1280px",
-            // => @media (min-width: 1280px) { ... }
-
             "2xl": "1536px",
-            // => @media (min-width: 1536px) { ... }
           },
         },
       };
     </script>
     <style>
-     .cars {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 16px;
-      margin: 16px;
-      max-width: 300px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .cars img {
-      width: 100%;
-      height: 200px;
-      border-radius: 4px;
-      object-fit: cover;
-    }
+     .cars {border: 1px solid #ddd;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);}
     .carprice{font-weight: 700; color: rgb(121, 18, 18);}
     .cars h2 {
       font-size: 18px;
@@ -57,24 +35,20 @@
       font-weight: 600;
       text-shadow: 1px 7px 7px rgb(184, 179, 179);
     }
-    .cars p {
-      margin: 4px 0;
-    }
+    .cars p {margin: 4px 0;}
     .cars span{color: gray;}
     .desktopFooter{display: none;}
     .desktopcontainer{display: none;}
     
-    @media only screen and (min-width: 400px){
+    @media only screen and (min-width: 480px){
       .container{display: none;}
-      #cards-container{display: flex;flex-wrap: wrap; max-width: 1800px;margin: auto;}
-      .cars img {width:200px;}
+      #cards-cars{display: flex;flex-wrap: wrap; max-width: 1100px; margin: auto;} 
+      .cars img {width:100%;}
       .mobilefooter{display: none;}
       .desktopHeader{max-width: 3000px; margin: auto;}
       .deaktopBtns{max-width: 3200px; margin: auto;}
-      .desktopFooter{display: initial;}
-      .desktopcontainer{display: initial;}
-    
-    
+      .desktopFooter{display: block;}
+      .desktopcontainer{display: block;}
     }
     </style>
   </head>
@@ -169,23 +143,21 @@
       </div>
       <div class="deaktopBtns flex">
         <div class="deaktopBtns flex pt-5">
-          <div class="flex space-x-36 mx-2 my-[8px] bg-white py-4 rounded-xl w-[230px]">
-            <a href="" class="pl-4 text-gray-400  ">Marka</a>
-            <i class="text-gray-400 fa-solid fa-angle-down pt-1"></i>
-          </div>
-          <div class="flex space-x-36 mx-1  my-[8px] bg-gray-50 py-4 rounded-xl w-[230px]">
-            <a href="" class="pl-4  text-gray-200 ">Model</a>
-            <i class="text-gray-400 fa-solid fa-angle-down pt-1"></i>
-          </div>
+          <select id="markaSel" onclick="markaCixart()" class="flex pl-4 text-gray-500  space-x-36 mx-2 my-[8px] bg-white py-4 rounded-xl w-[230px]">
+            <option>Marka</option>
+      
+          </select>
+          <select id="modelSelect" onclick="modelCixart()" class="flex pl-4 text-gray-400 text-gray-400 space-x-36 mx-1  my-[8px] bg-gray-50 py-4 rounded-xl w-[230px]">
+            <option>Model</option>
+          </select>
           <div class="flex mx-2  my-[8px] bg-white rounded-xl w-[210px]">
             <button class="text-white  bg-red-700 rounded-xl px-3 ">Hamısı</button>
             <button class="border-r-2 border-gray-50 text-gray-400 px-3 hover:bg-red-700 hover:rounded-xl">Yeni</button>
             <button class=" text-gray-400 px-2 hover:bg-red-700 hover:rounded-xl">Sürülmüş</button>
           </div>
-          <div class="flex space-x-36 mx-1  my-[8px] bg-white py-4 rounded-xl w-[230px]">
-            <a href="" class="pl-4 text-gray-400 ">Şəhər</a>
-            <i class="text-gray-400 pt-1 fa-solid fa-angle-down"></i>
-          </div>
+          <select id="seherSelect" onclick="cityCixart()" class="flex pl-4 space-x-36 mx-1 text-gray-400  my-[8px] bg-white py-4 rounded-xl w-[230px]">
+           <option>Şəhər</option>
+          </select>
         </div>       
       </div>
 
@@ -196,15 +168,16 @@
             <button class="text-gray-400 pl-5">maks.</button>
           </div>
           <div class="flex mx-2  my-[8px] bg-white rounded-xl w-[230px]">
-            <button id="btn1" class="text-gray-800 border-r-2 border-gray-100   px-3 rounded-xl">AZN ▼</button>
+            <select id="moneySelect" onclick="moneyCixart()" class="text-gray-800 border-r-2 border-gray-100   px-3 rounded-xl">
+              <option>AZN</option>
+            </select>
             <button class="border-r-2 border-gray-100 text-gray-800 px-3 rounded-xl">Kredit</button>
             <button class=" text-gray-800 px-3 rounded-xl">Barter</button>
           </div>
           
-          <div class="flex space-x-28 mx-1  my-[8px] bg-white py-4 rounded-xl w-[230px]">
-            <a href="" class="pl-4 text-gray-400 ">Ban növü</a>
-            <i class="text-gray-400 fa-solid fa-angle-down pt-1"></i>
-          </div>
+          <select id="banSelect" onclick="banCixart()" class="flex pl-4 text-gray-400 space-x-28 mx-1  my-[8px] bg-white py-4 rounded-xl w-[230px]">
+           <option>Ban növü</option>
+          </select>
           <div class="flex mx-2  my-[8px] bg-white rounded-xl w-[210px]">
             <button class="text-gray-400 px-7 border-r-2 border-gray-100">İl, min.</button>
             <button class=" text-gray-400 px-3 hover:bg-red-700 hover:rounded-xl">maks.</button>
@@ -213,15 +186,13 @@
         </div>       
       </div> 
 
-      <div class="deaktopBtns flex mt-5">
-      <div class="deaktopBtns flex ml-52" >
+      <div class="max-w-[1000px] m-auto space-x-[700px] text-center flex mt-5">
+      <div class=" flex " >
         <p>Bu gün:</p><span class=" pl-1 text-sky-500">1537 yeni elan</span>
       </div>
-      <div class="mr-52">
+      <div onclick="scrollCars(event)" >
         <a href=""  class=" text-white px-2  py-3 bg-red-700 rounded-xl px-[3px] font-bold text-sm">Elanları göstər</a>
-      </div>
-      
-      
+      </div>    
     </div>
 
     <div class="deaktopBtns flex mt-5">
@@ -232,7 +203,7 @@
     </div>
     </div></div>
     <main>
-      <div id="cards-container"></div>
+      <div id="cards-cars"></div>
     </main>
 
     <footer class="mobilefooter">
